@@ -5,3 +5,4 @@ dist
 yarn.lock
 *.env
 venv
+__pycache__/
