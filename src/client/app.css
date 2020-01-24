@@ -1,0 +1,31 @@
+h1 {
+  color: green;
+}
+
+body {
+  text-align: center;
+  margin: auto;
+} 
+
+#root {
+  height: 100%;
+}
+.mainpage{
+  height:100%;
+}
+html {
+  height: 100%;
+}
+.container {
+  height: 100%
+}
+
+.row{
+  display: 'flex';
+  alignItems: 'center';
+  justifyContent: 'center';
+
+}
+body {
+  height: 100%;
+}
