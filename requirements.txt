@@ -1,0 +1,4 @@
+slackclient
+spotipy
+flask
+requests
