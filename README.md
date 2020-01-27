@@ -19,6 +19,7 @@ yarn build (or npm run build)
 yarn start (or npm start)
 ```
 ## TODO
+- [] Need to fix proxy issues
 - [] Set up Spotify authorization
 - [] Set up Slack authorization
 - [] Host the application on AWS

@@ -15,7 +15,7 @@ export default class App extends Component {
             currently_playing: ""};
 
    authorize(token) {
-    fetch("http://localhost:8080/set/auth" ,
+    fetch("/set/auth" ,
       { method:'POST', body:token})
       .then((response) => {
         console.log(response);
