@@ -9,34 +9,30 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 export default class App extends Component {
-  state = { username: null , url : ""};
+  state = { username: null ,
+            url : "",
+            access_token: undefined,
+            currently_playing: ""};
 
-  authorize = () => {
-    fetch("http://0.0.0.0:9000/login")
+   authorize(token) {
+    fetch("http://localhost:8080/set/auth" ,
+      { method:'POST', body:token})
       .then((response) => {
         console.log(response);
-        // return responseData;
       })
     }
-  clickMe = () => {
-    fetch("http://0.0.0.0:9000/login", {redirect: 'follow'})
-     .then(function(response) {
-       console.log(response)
-     }).catch(function() {
-        console.log("error");
-     });
-}
-  componentDidMount() {
-    console.log(process.env)
 
-    this.setState ({url : "https://accounts.spotify.com/en/authorize?client_id="+process.env.SPOTIPY_CLIENT_ID+"&response_type=code&redirect_uri=http:%2F%2F0.0.0.0:9000%2F&scope=user-read-private%20user-read-email"})
-      fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-      // this.fetchUsers();
-      //   this.timer = setInterval(() => this.fetchUsers(), 5000);
+  componentDidMount() {
+    const query = window.location.search.substring(1)
+    const token = query.split('code=')[1]
+    if (token != this.state.access_token){
+      this.setState({access_token: token})
+      this.authorize(token)
+    }
+
   }
   render() {
+
     const { username } = this.state;
     return (
       <div className="mainpage">
@@ -44,7 +40,7 @@ export default class App extends Component {
           <Row>
             <Col>
               <div className="main">
-              <Button variant="primary" size="lg" block onClick={this.clickMe}>
+              <Button variant="primary" size="lg" block href="api/auth">
                   Connect with Spotify
                 </Button>
               </div>
